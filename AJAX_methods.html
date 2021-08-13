@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<!-- jQuery Simple AJAX load -->
+<!-- AJAX get and send data jQuery methods -->
+<head>
+    <title>jQuery Course</title>
+</head>
+
+<body>
+    <div id="output">Output1 Content</div>
+    <div id="output2">Output2 Content</div>
+    <div class="one"><a href="#" id="myClicker">Click me</a> Some content</div>
+    <input type="text" value="hello world" id="myA">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myClicker").click(function (e) {
+                e.preventDefault();
+                var url = "https://api.myjson.com/bins/23xvb";
+                var newdata = {
+                    name: $("#myA").val()
+                }
+
+                $.post("ajax.php", newdata, function (d, status, xhr) {
+                    console.log(status);
+                    console.log(xhr);
+                    $("#output").html(d);
+                })
+
+                $.ajax({
+                    url: "ajax.php",
+                    type: "POST",
+                    data: newdata,
+                    success: function (data, status, xhr) {
+                        console.log(xhr);
+                    },
+                    error: function (data, status, xhr) {
+                        console.log(xhr);
+                    }
+                })
+
+                //$("#output").load("ajax.php");
+                $.get("ajax.php", newdata, function (data) {
+                    $("#output").html(data);
+                })
+                $.getJSON(url, function (data) {
+                    console.log(data);
+                    $("#output2").html(data.firstName);
+
+                })
+
+            })
+
+        })
+    </script>
+</body>
+
+</html>
