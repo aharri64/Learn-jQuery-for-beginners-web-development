@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<!-- jQuery Traversing the elements -->
+<!-- jQuery Traversing Children Siblings and more -->
+<!-- jQuery element selection -->
+<head>
+    <title>jQuery Course</title>
+    <style>
+        li:nth-child(3) {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output">Output2 Content</div>
+    <div class="one"><a href="#" id="myClicker">Click me</a> Some content</div>
+    <p id="grandparent">
+        <div class="parentone">
+            <div class="childone">
+                <p class="one">Child #1</p>
+            </div>
+            <div class="childtwo">
+                <p class="two">Child #2</p>
+            </div>
+            <div class="childthree">
+                <p class="one">Child #3</p>
+            </div>
+            <p>I'm a paragraph</p>
+        </div>
+    </p>
+    <input type="text" value="helloworld" id="myInput">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log($(".two").parent());
+            console.log($(".two").parents());
+
+            console.log($(".parentone").children());
+            /*
+            $(".parentone").children().each(function(index){
+                $(this).text(index+ " new one");
+            })
+            */
+            //$(".parentone").children("div.childtwo").html("CHILD ONE");
+            //$(".parentone").find("div p").html("PARAGRAPH");
+            //$(".parentone div.childone").siblings("div").html("NEW P content");
+            //$(".childone").next().html("NEXT");
+            //$(".childone").nextAll().html("nextall");
+            //$(".parentone").children().first().html("FIRST CHILD");
+            //$(".parentone").children().last().html("LASTCHILD");
+            //$(".parentone").children().eq(1).html("SECOND");
+            $(".one").filter("p").html("FILTERED");
+            
+            
+            
+            
+        })
+    </script>
+</body>
+
+</html>
