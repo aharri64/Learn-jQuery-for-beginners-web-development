@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- section 1 - part 1 - 6-->
+<!-- Intro to jQuery -->
+<!-- What is jQuery and how to use it -->
+<!-- How jQuery Works -->
+<!-- Use jQuery to update a webpage -->
+<!-- Selecting Each item from mulitple items -->
+<!-- jQuery updating Page Content -->
+<html>
+<head>
+    <title>jQuery Course</title>
+    <style>
+        li {
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+  <div id="output">Output2 Content</div>
+    <div class="one">Some content</div>
+        <div class="one">Some content 1</div>
+        <div class="one">Some content 2</div>
+        <div class="one">Some content 3</div>
+        <div class="one">Some content 4</div>
+        <div class="one">Some content 5</div>
+    
+    <ul><li>One</li><li>Two</li><li>Three</li><li>Four</li></ul>
+    
+    <input type="text" value="helloworld" id="myInput" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        $("li").each(function(i,e){
+            console.log(e);
+            console.log(i);
+            $(e).text((i+1)+" Count");
+        })
+        
+        $("#output").prepend("PREPEND");
+        $("#output").append("APPEND");
+        $("#output").before("BEFORE ");
+        $("#output").after("AFTER");
+        
+        $("#output").empty();
+        $("#output").remove();
+        
+        
+        
+
+        $(".one").html("inner<BR>HTML");
+        $(".one").text("inner<BR>HTML");
+        $("#myInput").val("New Content");
+
+        var myHolder = $("#myInput").val();
+        $(".one").html(myHolder);
+
+    })
+    </script>
+</body>
+</html>
