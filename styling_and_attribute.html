@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<!-- jQuery and CSS -->
+<!-- Working with Classes in jQuery -->
+<!-- jQuery Toggle Classes -->
+<!-- jQuery working with Attributes -->
+<head>
+    <title>jQuery Course</title>
+    <style>
+        li:nth-child(3) {
+            color: blue;
+        }
+        
+        .myClassa {
+            background-color: beige;
+            color: cornflowerblue;
+        }
+        
+        .myClassb {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output">Output2 Content</div>
+    <div class="one"><a href="#" id="myClicker">Click me</a> Some content</div>
+    <img id="myimage" src="http://lorempixel.com/200/200" />
+    <p id="grandparent">
+        <div class="parentone">
+            <div class="childone">
+                <p class="one myClassb">Child #1</p>
+            </div>
+            <div class="childtwo">
+                <p class="two myClassb">Child #2</p>
+            </div>
+            <div class="childthree">
+                <p class="one myClassb">Child #3</p>
+            </div>
+            <p>I'm a paragraph</p>
+        </div>
+    </p>
+    <input type="text" value="helloworld" id="myInput">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#myimage").click(function () {
+                var myoutput = $(this).attr("src");
+                $("#output").html(myoutput);
+                $(this).attr("src", "http://lorempixel.com/150/150");
+            })
+
+            $("p").click(function () {
+                $(this).toggleClass("myClassa");
+                $(this).toggleClass("myClassb");
+            })
+
+            $("p").click(function () {
+                if ($(this).hasClass("myClassa")) {
+                    $(this).removeClass("myClassa");
+                    $(this).addClass("myClassb");
+                } else {
+                    $(this).addClass("myClassa");
+                    $(this).removeClass("myClassb");
+                }
+            })
+
+            $("p").click(function () {
+                $(this).css("background-color", "green");
+            })
+            $(".parentone").children().last().css("color", "red");
+            $("p").css("background-color", "blue");
+
+            $("p").css({
+                "background-color": "yellow",
+                "color": "red"
+            })
+        })
+    </script>
+</body>
+
+</html>
