@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- part 8 - 11 -->
+<!-- jQuery Event Listeners -->
+<!-- jQuery Filter your selection via index value -->
+<!-- jQuery prevent default actions -->
+<!-- Form event triggers jQuery -->
+<html>
+<head>
+    <title>jQuery Course</title>
+    <style>
+        li:nth-child(3) {
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+  <div id="output">Output2 Content</div>
+    <div class="one"><a href="#" id="myClicker">Click me</a> Some content</div>
+        <div class="one">Some content 1</div>
+        <div class="one">Some content 2</div>
+        <div class="one">Some content 3</div>
+        <div class="one">Some content 4</div>
+        <div class="one">Some content 5</div>
+    <ul><li>One</li><li>Two</li><li>Three</li><li>Four</li></ul>
+     <input type="text" value="helloworld" id="myInput" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var holder = "";
+        $("li:eq(0)").mouseover(function(e){
+            holder = $(this).text();
+            $(this).text("Get off me!!!");
+        })
+        $("li:eq(0)").mouseout(function(e){
+            $(this).text(holder);
+        })
+        
+        $("#myInput").keydown(function(e){
+            $("#output").html(e.which + " key is pressed");
+        })
+        
+        $("#myInput").focusout(function(e){
+            $("#output").html($(this).val() + " field contents");
+        })
+        
+        $("#myClicker").click(function(event){
+            event.preventDefault();
+            $("#output").html("Clicked by me");
+        })
+        
+        $(".one").on("click",function(event){
+            console.log($(this));
+            $("#output").html("Clicked");
+        })
+        
+        $("li:eq(2)").click(function(event){
+            console.log($(this));
+        })
+    })
+    </script>
+</body>
+</html>
