@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<!-- Source Code on Change Radio buttons check boxes -->
+<head>
+    <title>jQuery Course</title>
+    <style>
+        div {
+            margin: 20px;
+        }
+        
+        .one {
+            border: 1px solid black;
+            display: inline-block;
+            padding: 5px;
+            background-color: azure;
+        }
+        
+        .highlight {
+            background-color: red;
+        }
+        
+        #output {
+            background-color: yellow;
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output">Output1 Content</div>
+
+    <input id="pswa" class="matchField" type="text" />
+    <br/>
+    <input id="pswb" class="matchField" type="text" />
+    <div id="status"></div>
+
+    <div id="myForm">
+        <input type="radio" value="Yes" name="myRadio">Yes
+        <input type="radio" value="No" name="myRadio" checked>No
+        <br>
+        <input type="checkbox" value="send data" name="myCheck1" id="myCheck1"> Check Me
+        <br>
+        <input type="checkbox" value="send data 2" name="myCheck2" id="myCheck2" checked> Hide or Show Output Div
+        <br> Select one
+        <select>
+            <option value="option1" selected="selected">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+        </select>
+    </div>
+    <div class="one"><a href="#" id="myClicker">Click me</a></div>
+    <input type="text" value="TEST" id="myA" placeholder="name">
+
+    <BR>
+    <BR>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#myCheck1").on("change", function () {
+                console.log($(this));
+                if ($(this).prop("checked")) {
+                    var sure = confirm("Are you sure?");
+                    this.checked = sure;
+                }
+                $("#output").html("Checked");
+            });
+
+            $("#myCheck2").change(function () {
+                if (this.checked) {
+                    $("#output").show();
+                } else {
+                    $("#output").hide();
+                }
+            });
+
+            $("#myForm input:radio").change(function () {
+                var result = "RADIO CHANGED TO : " + $(this).val();
+                myAjax(result);
+                $("#status").html(result);
+            })
+
+            $("#myClicker").click(function (e) {
+                e.preventDefault();
+                myAjax($("#myA").val());
+            });
+
+            function myAjax(a) {
+                var newdata = {
+                    name: a
+                }
+                $.ajax({
+                    url: "ajax.php",
+                    type: "POST",
+                    data: newdata,
+                    success: function (data, status, xhr) {
+                        console.log(xhr.responseText);
+                        $("#output").html(xhr.responseText);
+                    },
+                    error: function (data, status, xhr) {
+                        console.log(xhr);
+                    }
+                });
+
+            }
+
+            $("#myForm select").change(function () {
+                myAjax($(this).val());
+            });
+        });
+    </script>
+</body>
+
+</html>
